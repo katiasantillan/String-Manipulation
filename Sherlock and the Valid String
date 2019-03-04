@@ -1,0 +1,55 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter, defaultdict
+
+# Complete the isValid function below.
+def isValid(s):
+    s = list(s)
+    dic = defaultdict(int)
+    dic2 = defaultdict(int)
+
+    for i in s:
+        dic[i]+=1
+
+    for i in dic:
+        dic2[dic[i]]+=1
+
+    l = len(dic2)
+    key = list(dic2.keys())
+    val = list(dic2.values())
+
+
+    if(l == 1):
+        return('YES')
+
+    elif(l == 2):
+
+        if(1 in val and dic2[1] == 1) or (1 in val and abs(key[0]-key[1]) == 1):
+            return("YES")
+        
+        else:
+            return('NO')
+
+    else:
+        return('NO')
+
+
+
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = isValid(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
